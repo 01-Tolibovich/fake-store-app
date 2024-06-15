@@ -1,0 +1,32 @@
+@import "../../styles/variables.scss";
+@import "../../styles/mixins.scss";
+
+.main-header {
+  background-color: $primary-bg-color;
+  padding: 10px 0;
+  box-shadow: 0px 7px 9px 0px $box-shadow-bottom;
+  margin-bottom: 60px;
+
+  .header-wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    @include maxWidthContent($limited-width, $content-padding);
+
+    .logo-block {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-weight: 600;
+      color: $primary-color;
+
+
+      .store-logo {
+        height: 100%;
+      }
+    }
+  }
+
+  .navigations {
+
+  }
+}

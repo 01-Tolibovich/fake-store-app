@@ -1,0 +1,54 @@
+@import "./variables.scss";
+@import "./mixins.scss";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: $primary-bg-color;
+  color: $content-color;
+  line-height: 1.5;
+
+  .app-wrapper {
+
+    .content {
+      @include maxWidthContent($limited-width, $content-padding)
+    }
+  }
+}
+
+h1 {
+  color: $primary-color;
+}
+
+h3 {
+  font-weight: 500;
+  line-height: 2;
+}
+
+button {
+  color: $content-color;
+  border: none;
+  background-color: $primary-bg-color;
+  box-shadow: 8px 8px 10px $box-shadow-bottom, -8px -8px 10px $box-shadow-top;
+  border-radius: 50px;
+  padding: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+
+  &:hover {
+    color: $primary-color;
+  }
+
+  &:active {
+    background: linear-gradient(145deg, #cacaca, #f0f0f0);
+  }
+}
