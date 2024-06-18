@@ -1,14 +1,17 @@
-"use client"
-
-import { useState } from "react";
+"use client";
 import "./styles.scss";
 
-const ModalUI = ({ children }) => {
-  const [closeModal, setCloseModal] = useState(true);
-	 return closeModal && (
-      <div onClick={() => setCloseModal(false)} className="modal-ui-wrapper">
-      <div className="modal-content">{ children }</div>
-    </div>
+const ModalUI = ({ children, isModalActive, setIsModalActive }) => {
+  const handleClose = () => {
+    setIsModalActive(false);
+  };
+
+  return (
+      <div
+        onClick={() => handleClose()}
+        className={`modal-ui-wrapper ${isModalActive ? "modal-is-show" : ""}`}>
+        <div onClick={e => e.stopPropagation()} className="modal-content">{children}</div>
+      </div>
   );
 };
 
