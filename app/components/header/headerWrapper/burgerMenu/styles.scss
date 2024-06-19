@@ -1,0 +1,39 @@
+@import "@/app/styles/variables.scss";
+@import "@/app/styles/mixins.scss";
+
+
+.burger-menu {
+  justify-self: end;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .burger-menu-button {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 6px;
+    cursor: pointer;
+
+    &.menu-is-open {
+
+      :nth-child(1) {
+        transform: rotate(45deg) translate(6px, 6px);
+      }
+      :nth-child(2) {
+        width: 0;
+      }
+      :nth-child(3) {
+        transform: rotate(-45deg) translate(5px, -6px);
+      }
+    }
+
+    span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background-color: $primary-color;
+      transition: 300ms ease-in;
+    }
+  }
+}

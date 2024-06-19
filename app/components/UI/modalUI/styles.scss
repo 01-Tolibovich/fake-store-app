@@ -1,4 +1,5 @@
 @import "../../../styles/variables.scss";
+@import "../../../styles/mixins.scss";
 
 @mixin animation($scale, $transition, $opacity, $z-index) {
   transform: $scale;
@@ -21,8 +22,15 @@
 
   .modal-content {
     background-color: $primary-bg-color;
-    padding: 10px;
+    padding: 12px;
     @include animation(scale(0), 0.4s 0s, 0, -1);
+    border-radius: 28px;
+
+    .modal-body {
+      border-radius: 24px;
+      @include neumorphism($neu-rounded);
+      padding: 16px;
+    }
   }
 
   &.modal-is-show {
@@ -36,6 +44,7 @@
   img {
     width: 100%;
     height: auto;
-    max-height: 60vh;
+    max-height: 50vh;
+    mix-blend-mode: multiply;
   }
 }

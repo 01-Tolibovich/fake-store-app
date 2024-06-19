@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { ButtonUI, ModalUI } from "../../UI";
 import { PiArrowRightThin } from "react-icons/pi";
+import Link from "next/link";
 
 import "./styles.scss";
 
@@ -48,6 +49,7 @@ const Product = ({ products }) => {
       ))}
       <ModalUI isModalActive={isModalActive} setIsModalActive={setIsModalActive}>
         <Image src={singleProductData.image} alt={singleProductData.image} width={400} height={400} />
+            <Link href={"#"} className="go-to-product-page"><span>Go to product page</span> <PiArrowRightThin /></Link>
       </ModalUI>
     </>
   );

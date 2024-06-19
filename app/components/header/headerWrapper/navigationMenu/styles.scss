@@ -1,0 +1,59 @@
+@import "@/app/styles/variables.scss";
+@import "@/app/styles/mixins.scss";
+
+.navigation-menu {
+  transition: 300ms;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 0;
+  transition: 300ms 200ms;
+
+  &.menu-is-open {
+    height: 300px;
+
+    nav {
+      transition: 300ms;
+
+      li {
+        opacity: 1;
+        transition: opacity;
+        transition-delay: 1000ms;
+      }
+    }
+
+    h2 {
+      opacity: 1;
+      transition: opacity;
+      transition-delay: 800ms;
+    }
+  }
+
+  h2 {
+    margin-bottom: 16px;
+    opacity: 0;
+    transition: 300ms;
+  }
+
+  nav {
+    cursor: pointer;
+    transition: 300ms;
+
+    :hover {
+      color: $primary-color;
+      font-weight: 600;
+    }
+
+    li {
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      opacity: 0;
+      transition: 300ms;
+
+      .arrow {
+        margin-left: 10px;
+      }
+    }
+  }
+}

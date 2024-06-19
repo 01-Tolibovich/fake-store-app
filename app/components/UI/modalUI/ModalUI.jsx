@@ -10,7 +10,9 @@ const ModalUI = ({ children, isModalActive, setIsModalActive }) => {
       <div
         onClick={() => handleClose()}
         className={`modal-ui-wrapper ${isModalActive ? "modal-is-show" : ""}`}>
-        <div onClick={e => e.stopPropagation()} className="modal-content">{children}</div>
+        <div onClick={e => e.stopPropagation()} className="modal-content">
+          <div className="modal-body">{children}</div>
+        </div>
       </div>
   );
 };

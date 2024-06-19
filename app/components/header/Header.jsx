@@ -1,16 +1,14 @@
-import { FaShopify } from "react-icons/fa";
-import "./styles.scss";
+import { getCategories } from "@/app/protocols/rest/getCategories";
 
-const Header = () => {
+import "./styles.scss";
+import HeaderWrapper from "./headerWrapper/HeaderWrapper";
+
+const Header = async () => {
+	const categories = await getCategories();
+
 	return (
 		<header className="main-header">
-			<div className="header-wrapper">
-				<div className="logo-block">
-					<FaShopify className="store-logo" />
-          <span>Simple Store</span>
-				</div>
-				<nav className="navigations">dfdsfsfa</nav>
-			</div>
+			<HeaderWrapper categories={categories} />
 		</header>
 	);
 };

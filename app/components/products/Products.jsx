@@ -5,8 +5,6 @@ import "./styles.scss";
 const Products = async () => {
 	const products = await getProducts();
 
-	let Sproduct;
-
 	return (
 		<div className="products-wrapper">
 			{products && <Product products={products}/>}
