@@ -65,10 +65,8 @@ const Product = ({ products }) => {
 								</ButtonUI>
 							</div>
 						</div>
-						<Link href={"#"} className="go-to-product-page">
-							<Link href={`/${singleProductData.id}`}>
-								<span>Go to product page</span> <PiArrowRightThin />
-							</Link>
+						<Link href={`/${singleProductData.id}`} className="go-to-product-page">
+							<span>Go to product page</span> <PiArrowRightThin />
 						</Link>
 					</div>
 				</div>

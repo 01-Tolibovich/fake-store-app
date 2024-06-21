@@ -24,6 +24,6 @@
     width: 50px;
     font-size: 1rem;
     padding: 5px;
-    @include neumorphismInset();
+    @include neumorphismInset(0);
   }
 }
