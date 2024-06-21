@@ -17,15 +17,13 @@
 
       li {
         opacity: 1;
-        transition: opacity;
-        transition-delay: 1000ms;
+        transition: opacity 500ms 800ms ;
       }
     }
 
     h2 {
       opacity: 1;
-      transition: opacity;
-      transition-delay: 800ms;
+      transition: opacity 500ms 600ms;
     }
   }
 

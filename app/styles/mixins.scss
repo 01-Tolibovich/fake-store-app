@@ -11,3 +11,7 @@
   box-shadow: 8px 8px 10px $box-shadow-bottom, -6px -6px 8px $box-shadow-top;
   border-radius: $neu-rounded;
 }
+
+@mixin neumorphismInset() {
+  box-shadow: inset 8px 8px 10px $box-shadow-bottom, inset -8px -8px 10px $box-shadow-top;
+}

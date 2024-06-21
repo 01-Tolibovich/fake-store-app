@@ -21,6 +21,9 @@
   @include animation(none, 0.2s 0.2s, 0, -1);
 
   .modal-content {
+    max-height: 70vh;
+    max-width: 1000px;
+    margin: 10px;
     background-color: $primary-bg-color;
     padding: 12px;
     @include animation(scale(0), 0.4s 0s, 0, -1);
@@ -39,12 +42,5 @@
     .modal-content {
       @include animation(scale(1), 0.2s 0.1s, 1, 20);
     }
-  }
-
-  img {
-    width: 100%;
-    height: auto;
-    max-height: 50vh;
-    mix-blend-mode: multiply;
   }
 }

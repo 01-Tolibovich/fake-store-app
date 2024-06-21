@@ -1,0 +1,29 @@
+@import "@/app//styles/variables.scss";
+@import "@/app//styles/mixins.scss";
+
+.ui-counter-component {
+  user-select: none;
+  align-items: center;
+  height: 36px;
+  display: flex;
+
+  .counter-buttons {
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    font-size: 1.5rem;
+    font-weight: 500;
+  }
+
+  input {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    color: $content-color;
+    text-align: center;
+    width: 50px;
+    font-size: 1rem;
+    padding: 5px;
+    @include neumorphismInset();
+  }
+}
