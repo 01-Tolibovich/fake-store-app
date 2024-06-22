@@ -24,6 +24,13 @@ body {
   a {
     color: $primary-color;
     text-decoration: none;
+    transition: 100ms;
+
+    &:hover {
+      margin-left: 1px; 
+      color: $active-link-color !important;
+      text-decoration-color: $active-link-color;
+    }
   }
 }
 

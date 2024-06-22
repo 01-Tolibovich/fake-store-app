@@ -14,6 +14,56 @@
     margin-bottom: 10px;
     cursor: pointer;
     @include neumorphismInset($neu-rounded);
+    position: relative;
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-color: rgb(0 0 0 / 23%);
+      width: 100%;
+      height: 100%;
+      border-radius: $neu-rounded;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+      opacity: 0;
+      transition: 150ms 350ms;
+
+      &.active {
+        opacity: 1;
+        transition: 150ms 0s;
+
+
+        .eye-block {
+          transform: scale(1) rotate(0);
+          transition: 600ms 150ms;
+        }
+      }
+
+      .eye-block {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        width: 100px;
+        height: 100px;
+        background-color: $primary-color;
+        border-radius: 50%;
+        transform: scale(0) rotate(359deg);
+        transition: 600ms;
+
+        .eye {
+          color: #ffffff;
+        }
+
+        small {
+          color: #ffffff;
+          font-weight: 500;
+        }
+      }
+    }
   }
 
   img {
@@ -23,17 +73,37 @@
   }
 
   h3 {
-    text-wrap: nowrap;
+    margin-bottom: 6px;
+    color: $secondary-color;
+
+    &:hover {
+      color: $primary-color;
+    }
   }
 
   .description {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    font-style: italic;
+    font-weight: 300;
+    color: #3f3f3f;
+    margin-bottom: 4px;
+  }
+
+  .category {
+    margin-bottom: 8px;
+
+    a {
+      color: $content-color;
+      text-decoration: underline;
+      text-decoration-color: $content-color;
+    }
   }
 
   .price {
     margin-bottom: 10px;
+    font-weight: 500;
   }
 }
 
@@ -75,7 +145,7 @@
       transition: 200ms;
       cursor: pointer;
       margin-top: 24px;
-    
+
       &:hover {
         font-weight: 600;
         color: $primary-color;

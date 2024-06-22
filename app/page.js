@@ -1,11 +1,14 @@
+import { getProducts } from "@/app/protocols/rest/getProducts";
 import { Products } from "./components";
 
 
-export default function Home() {
+export default async function Home() {
+	const products = await getProducts();
+  const title = "All products";
+
   return (
     <div>
-      <h1>All products</h1>
-      <Products />
+      <Products products={products} title={title}/>
     </div>
   );
 }

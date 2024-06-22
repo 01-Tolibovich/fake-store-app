@@ -15,7 +15,7 @@
     nav {
       transition: 300ms;
 
-      li {
+      a {
         opacity: 1;
         transition: opacity 500ms 800ms ;
       }
@@ -42,7 +42,7 @@
       font-weight: 600;
     }
 
-    li {
+    a {
       margin-bottom: 10px;
       display: flex;
       align-items: center;

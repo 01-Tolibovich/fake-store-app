@@ -14,14 +14,14 @@ const HeaderWrapper = ({ categories }) => {
 	return (
 		<div className="header-wrapper">
 			<div className="logo-block">
-				<Link href="/">
+				<Link href="/" onClick={() => setMenuIsShow(false)}>
 					<FaShopify className="store-logo" />
 					<span>Simple Store</span>
 				</Link>
 			</div>
 			<ButtonMenu menuIsShow={menuIsShow} setMenuIsShow={setMenuIsShow} />
 			<hr className={`hr-line ${menuIsShow ? "full-width" : ""}`} />
-			<NavigationMenu categories={categories} menuIsShow={menuIsShow} />
+			<NavigationMenu categories={categories} menuIsShow={menuIsShow} setMenuIsShow={setMenuIsShow} />
 		</div>
 	);
 };

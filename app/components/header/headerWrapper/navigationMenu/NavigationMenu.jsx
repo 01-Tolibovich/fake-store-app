@@ -1,8 +1,9 @@
 import { PiArrowRightThin } from "react-icons/pi";
+import Link from "next/link";
 
 import "./styles.scss";
 
-const NavigationMenu = ({ categories, menuIsShow }) => {
+const NavigationMenu = ({ categories, menuIsShow, setMenuIsShow }) => {
 	const firstLetterToUpperCase = category => {
 		const firstLetter = category.charAt(0).toUpperCase();
 
@@ -15,9 +16,9 @@ const NavigationMenu = ({ categories, menuIsShow }) => {
 			<nav>
 				{categories &&
 					categories.map((category, index) => (
-						<li key={index}>
+						<Link href={`/category/${categories[index]}`} key={index} onClick={() => setMenuIsShow(false)}>
 							{firstLetterToUpperCase(category)} <PiArrowRightThin className={`arrow ${category === index ? "hover" : ""}`} />
-						</li>
+						</Link>
 					))}
 			</nav>
 		</div>

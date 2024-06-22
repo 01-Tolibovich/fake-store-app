@@ -1,13 +1,14 @@
-import { getProducts } from "@/app/protocols/rest/getProducts";
 import Product from "./product/Product";
 import "./styles.scss";
 
-const Products = async () => {
-	const products = await getProducts();
-
+const Products = ({ products, title }) => {
+	console.log(products);
 	return (
-		<div className="products-wrapper">
-			{products && <Product products={products}/>}
+		<div className="products">
+				<h1>{title}</h1>
+			<div className="products-wrapper">
+				{products && <Product products={products} />}
+			</div>
 		</div>
 	);
 };

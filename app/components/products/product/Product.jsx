@@ -5,6 +5,7 @@ import Image from "next/image";
 import { ButtonUI, CounterUI, ModalUI } from "../../UI";
 import { PiArrowRightThin } from "react-icons/pi";
 import Link from "next/link";
+import { FaEye } from "react-icons/fa6";
 
 import "./styles.scss";
 
@@ -18,6 +19,7 @@ const Product = ({ products }) => {
 		id: "",
 	});
 	const [count, setCount] = useState(1);
+	const [quickView, setQuickView] = useState(0);
 
 	const handleProductImg = singleProduct => {
 		setIsModalActive(true);
@@ -29,20 +31,48 @@ const Product = ({ products }) => {
 		setSingleProductData(prevState => ({ ...prevState, id: singleProduct.id }));
 	};
 
+	const overlayHandle = (id) => {
+		setQuickView(id);
+	}
+
+	const addToCartHandle = (product) => {
+		const productArray = []
+		productArray.push(product)
+
+		localStorage.setItem("productArray", JSON.stringify(productArray))
+	}
+
+	const test =  JSON.parse(localStorage.getItem("productArray"));
+
+	console.log(test);
+
 	return (
 		<>
 			{products.map(product => (
 				<div key={product.id} className="product-item">
-					<div onClick={() => handleProductImg(product)} className="img-block">
+					<div
+						onClick={() => handleProductImg(product)}
+						onMouseMove={() => overlayHandle(product.id)}
+						onMouseOut={() => setQuickView(false)}
+						className="img-block"
+					>
+						<div className={`overlay ${quickView === product.id ? "active" : ""}`}>
+							<div className="eye-block">
+								<FaEye className="eye" />
+								<small>Quick View</small>
+							</div>
+						</div>
 						<Image src={product.image} alt="Landscape picture" width={200} height={200} />
 					</div>
-					<marquee>
-						<h3>{product.title}</h3>
-					</marquee>
+					<Link href={`/${product.id}`}>
+						<h3>{product.title.slice(0, 20)}...</h3>
+					</Link>
 					<span className="description">{product.description}...</span>
-					<span>Category: {product.category}</span>
+					<div className="category">
+						<Link href={`/category/${product.category}`}>Category: {product.category}</Link>
+					</div>
 					<span className="price">Priсe: ${product.price}</span>
-					<ButtonUI>
+					<ButtonUI onClick={() => addToCartHandle(product)} >
 						<span>Add to cart</span>
 						<PiArrowRightThin />
 					</ButtonUI>
@@ -54,7 +84,7 @@ const Product = ({ products }) => {
 					<div className="product-info-item">
 						<div className="info-item">
 							<h3>{singleProductData.title}</h3>
-							<p>{singleProductData.description}</p>
+							<p>{singleProductData.description.slice(0, 200)}...</p>
 							<hr />
 							<span>Priсe: ${singleProductData.price}</span>
 							<div className="buttons-item">
