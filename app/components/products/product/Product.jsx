@@ -37,14 +37,14 @@ const Product = ({ products }) => {
 
 	const addToCartHandle = (product) => {
 		const productArray = []
-		productArray.push(product)
+		productArray.push(...product)
 
+		console.log(product);
 		localStorage.setItem("productArray", JSON.stringify(productArray))
+
+		const test = localStorage.getItem("productArray")
+		console.log(JSON.parse(test));
 	}
-
-	const test =  JSON.parse(localStorage.getItem("productArray"));
-
-	console.log(test);
 
 	return (
 		<>
@@ -89,7 +89,7 @@ const Product = ({ products }) => {
 							<span>Priсe: ${singleProductData.price}</span>
 							<div className="buttons-item">
 								<CounterUI count={count} setCount={setCount} />
-								<ButtonUI>
+								<ButtonUI onClick={(singleProductData) => addToCartHandle(singleProductData)}>
 									<span>Add to cart</span>
 									<PiArrowRightThin />
 								</ButtonUI>
