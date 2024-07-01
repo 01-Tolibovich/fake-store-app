@@ -1,6 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { cartList } from "@/app/redux/features/cartSlice";
 import Image from "next/image";
 import { ButtonUI, CounterUI, ModalUI } from "../../UI";
 import { PiArrowRightThin } from "react-icons/pi";
@@ -11,40 +13,52 @@ import "./styles.scss";
 
 const Product = ({ products }) => {
 	const [isModalActive, setIsModalActive] = useState(false);
-	const [singleProductData, setSingleProductData] = useState({
+	const [count, setCount] = useState(1);
+	const [quickView, setQuickView] = useState(0);
+
+	const dispatch = useDispatch();
+	const counter = useSelector(state => state.addToCart.cart);
+
+	console.log("counter:", counter);
+
+	const singleProductData = useRef({
 		image: "",
 		title: "",
 		description: "",
 		price: "",
 		id: "",
 	});
-	const [count, setCount] = useState(1);
-	const [quickView, setQuickView] = useState(0);
 
 	const handleProductImg = singleProduct => {
 		setIsModalActive(true);
 
-		setSingleProductData(prevState => ({ ...prevState, image: singleProduct.image }));
-		setSingleProductData(prevState => ({ ...prevState, title: singleProduct.title }));
-		setSingleProductData(prevState => ({ ...prevState, description: singleProduct.description }));
-		setSingleProductData(prevState => ({ ...prevState, price: singleProduct.price }));
-		setSingleProductData(prevState => ({ ...prevState, id: singleProduct.id }));
+		singleProductData.current = {
+			image: singleProduct?.image,
+			title: singleProduct?.title,
+			description: singleProduct?.description,
+			price: singleProduct?.price,
+			id: singleProduct?.id,
+		};
 	};
 
-	const overlayHandle = (id) => {
+	const overlayHandle = id => {
 		setQuickView(id);
-	}
+	};
 
-	const addToCartHandle = (product) => {
-		const productArray = []
-		productArray.push(...product)
+	const addToCartHandle = product => {
+		dispatch(cartList(product))
+	};
 
-		console.log(product);
-		localStorage.setItem("productArray", JSON.stringify(productArray))
+	const addToCartButton = product => {
+		return (
+			<ButtonUI onClick={() => addToCartHandle(product)}>
+				<span>Add to cart</span>
+				<PiArrowRightThin />
+			</ButtonUI>
+		);
+	};
 
-		const test = localStorage.getItem("productArray")
-		console.log(JSON.parse(test));
-	}
+	console.log();
 
 	return (
 		<>
@@ -72,30 +86,24 @@ const Product = ({ products }) => {
 						<Link href={`/category/${product.category}`}>Category: {product.category}</Link>
 					</div>
 					<span className="price">Priсe: ${product.price}</span>
-					<ButtonUI onClick={() => addToCartHandle(product)} >
-						<span>Add to cart</span>
-						<PiArrowRightThin />
-					</ButtonUI>
+					{addToCartButton(product)}
 				</div>
 			))}
 			<ModalUI isModalActive={isModalActive} setIsModalActive={setIsModalActive}>
 				<div className="product-info-modal">
-					<Image src={singleProductData.image} alt={singleProductData.image} width={400} height={400} />
+					<Image src={singleProductData.current.image} alt={singleProductData.current.image} width={400} height={400} />
 					<div className="product-info-item">
 						<div className="info-item">
-							<h3>{singleProductData.title}</h3>
-							<p>{singleProductData.description.slice(0, 200)}...</p>
+							<h3>{singleProductData.current.title}</h3>
+							<p>{singleProductData.current.description.slice(0, 200)}...</p>
 							<hr />
-							<span>Priсe: ${singleProductData.price}</span>
+							<span>Priсe: ${singleProductData.current.price}</span>
 							<div className="buttons-item">
 								<CounterUI count={count} setCount={setCount} />
-								<ButtonUI onClick={(singleProductData) => addToCartHandle(singleProductData)}>
-									<span>Add to cart</span>
-									<PiArrowRightThin />
-								</ButtonUI>
+								{addToCartButton(singleProductData.current)}
 							</div>
 						</div>
-						<Link href={`/${singleProductData.id}`} className="go-to-product-page">
+						<Link href={`/${singleProductData.current.id}`} className="go-to-product-page">
 							<span>Go to product page</span> <PiArrowRightThin />
 						</Link>
 					</div>
