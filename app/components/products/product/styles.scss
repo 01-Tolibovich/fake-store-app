@@ -105,6 +105,20 @@
     margin-bottom: 10px;
     font-weight: 500;
   }
+
+  .add-to-cart {
+    // position: relative;
+
+    .item-to-cart {
+      position: absolute;
+
+      .item-image {
+        width: 50px;
+        height: auto;
+      }
+    }
+  }
+
 }
 
 .product-info-modal {

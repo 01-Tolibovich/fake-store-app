@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { cartList } from "@/app/redux/features/cartSlice";
 import Image from "next/image";
@@ -17,9 +17,11 @@ const Product = ({ products }) => {
 	const [quickView, setQuickView] = useState(0);
 
 	const dispatch = useDispatch();
-	const counter = useSelector(state => state.addToCart.cart);
 
-	console.log("counter:", counter);
+	const { cartPositions } = useSelector(state => state.cartPositions);
+	console.log(1111, cartPositions);
+
+	const itemPosition = useRef();
 
 	const singleProductData = useRef({
 		image: "",
@@ -46,19 +48,32 @@ const Product = ({ products }) => {
 	};
 
 	const addToCartHandle = product => {
-		dispatch(cartList(product))
+		dispatch(cartList(product));
 	};
 
 	const addToCartButton = product => {
 		return (
-			<ButtonUI onClick={() => addToCartHandle(product)}>
-				<span>Add to cart</span>
-				<PiArrowRightThin />
-			</ButtonUI>
+			<div className="add-to-cart">
+			<div ref={itemPosition} className="item-to-cart">
+				<Image className="item-image" src={product.image} alt={product.image} width={200} height={200} />
+			</div>
+				<ButtonUI onClick={() => addToCartHandle(product)}>
+					<span>Add to cart</span>
+					<PiArrowRightThin />
+				</ButtonUI>
+			</div>
 		);
 	};
 
-	console.log();
+	useEffect(() => {
+		let item;
+		setTimeout(() => {
+			item = itemPosition.current.getBuindingClientRect();
+		}, 3000);
+
+	console.log("Product", item);
+
+	}, [])
 
 	return (
 		<>
