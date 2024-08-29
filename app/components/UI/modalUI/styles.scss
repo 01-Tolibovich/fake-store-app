@@ -37,10 +37,10 @@
   }
 
   &.modal-is-show {
-    @include animation(none, 0.2s 0s, 1, 20);
+    @include animation(none, 0.2s 0s, 1, 200);
 
     .modal-content {
-      @include animation(scale(1), 0.2s 0.1s, 1, 20);
+      @include animation(scale(1), 0.2s 0.1s, 1, 200);
     }
   }
 }

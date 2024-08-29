@@ -1,11 +1,11 @@
 
 
 .add-to-cart-ui {
-    // position: relative;
-
+transition: 1s;
     .item-to-cart {
       position: absolute;
-
+      transition: 1s;
+      z-index: 50;
       .item-image {
         width: 50px;
         height: auto;
